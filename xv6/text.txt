@@ -1,0 +1,11 @@
+LICENSE
+README.md
+a.out
+fprintf.c
+init_shell.c
+main.c
+microshell.c
+microshell.h
+parse.c
+test.c
+text.txt
