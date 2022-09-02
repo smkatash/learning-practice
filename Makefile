@@ -6,7 +6,7 @@
 #    By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 11:57:56 by ktashbae          #+#    #+#              #
-#    Updated: 2022/09/02 15:11:23 by ktashbae         ###   ########.fr        #
+#    Updated: 2022/09/02 18:01:01 by ktashbae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,19 +22,20 @@ OBJ		=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ -lreadline
+	@$(CC) $(CFLAGS) -o $@ $^ -lreadline
+	@echo "microshell is complied"
 
 obj/%.o : %.c obj
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 obj :
-	mkdir obj
+	@mkdir obj
 
 clean :
-	rm -rf obj
+	@rm -rf obj
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : clean all
 

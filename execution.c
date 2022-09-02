@@ -6,7 +6,7 @@
 /*   By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 20:19:44 by ktashbae          #+#    #+#             */
-/*   Updated: 2022/09/02 12:11:45 by ktashbae         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:59:15 by ktashbae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void execute_redirect(char **buffer, int mode)
 		if (fd < 0)
 		{
 			perror("Microshell: cannot open file\n");
-			free(argv);
 			return;
 		}
 		if (mode == STD_IN)
@@ -122,7 +121,6 @@ void execute_redirect(char **buffer, int mode)
 			return ;
 		execvp(argv[0], argv);
 		perror("R_execution: invalid input");
-		free(argv);
 		exit(1);
 	}
 	wait(NULL);

@@ -6,7 +6,7 @@
 /*   By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 18:31:44 by ktashbae          #+#    #+#             */
-/*   Updated: 2022/09/02 15:17:17 by ktashbae         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:58:28 by ktashbae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int main(void)
 			memcpy(shell.input, line, 500);
 			parse_input(shell.input, &shell);
 			add_history(shell.input);
+			free(line);
 		}
-		free(line);
 	}
 	clear_history();
 	write(1, "Exit...\n", 8);
