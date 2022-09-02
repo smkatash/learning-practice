@@ -2,7 +2,7 @@
 
 In this repository, i re-implemented the simple version of a shell, the interactive user interface with an operating system. I tried to learn the layer of programming that understands and executes the commands from user inputs.
 
-ft_strtok function is re-created that behaves similarly to the tokenizer of <cstring> header. And included basic handling of signals CTRL-C & CTRL\.
+ft_strtok function is re-created that behaves similarly to the tokenizer of "cstring" header. And included basic handling of signals CTRL-C & CTRL\.
 
 The basic structure of the implementation is following:
 
