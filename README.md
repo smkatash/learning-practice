@@ -28,3 +28,16 @@ $ ls -la > fileOutput
 $ ls >> file 
 $ echo hi < file
 ```
+         
+## Running microshell ##
+```bash
+# Clone this project
+$ git clone https://github.com/smkatash/my_microshell
+         
+# Compile the program
+$ make
+
+# Run the project
+$ ./microshell
+
+```
