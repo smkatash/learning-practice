@@ -10,8 +10,9 @@ The basic structure of the implementation is following:
 -------> parser (tokenizes input into sequences of commands and operators and calls according execution path)
 -------> execution (executes commands according to operators).
 
+## Supported: cd, cat, pwd, echo, exit. ##
+*Not all commands are supported.
 
-## Supported: cd, cat, pwd, echo, exit. Not all commands are supported. ##
 ## | [pipe] - Commands can be piped together(up to 10 pipes are supported)." ##
 ```bash
 $ ls -a | wc -c
