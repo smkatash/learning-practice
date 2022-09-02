@@ -6,7 +6,7 @@
 /*   By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 19:06:35 by ktashbae          #+#    #+#             */
-/*   Updated: 2022/08/31 21:23:44 by ktashbae         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:32:32 by ktashbae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void tokenizer(char **buffer, int *ptr, char *input, const char *delim)
 	*ptr = i;
 }
 
+/*
+checks for |, &, >>, <> operators and calls execution functions accordingly.
+Executes [cd] and other commands in a separate function
+*/
+
 void	parse_input(char *input, t_microshell *shell)
 {
 	int	ptr;
@@ -113,7 +118,7 @@ void	parse_input(char *input, t_microshell *shell)
 	{
 		tokenizer(shell->buffer, &ptr, input, ">>");
 		if (ptr == 2)
-			execute_redirect(shell->buffer, ptr, APPEND);
+			execute_redirect(shell->buffer, APPEND);
 		else 
 			perror("Wrong input in redirect: command >> file");
 	}
@@ -121,7 +126,7 @@ void	parse_input(char *input, t_microshell *shell)
 	{
 			tokenizer(shell->buffer, &ptr, input, ">");
 			if (ptr == 2)
-				execute_redirect(shell->buffer,ptr, STD_OUT);
+				execute_redirect(shell->buffer, STD_OUT);
 			else 
 				perror("Wrong input in redirec: command > file");
 	}
@@ -129,7 +134,7 @@ void	parse_input(char *input, t_microshell *shell)
 	{
 		tokenizer(shell->buffer, &ptr, input, "<");
 		if (ptr == 2)
-			execute_redirect(shell->buffer,ptr, STD_IN);
+			execute_redirect(shell->buffer, STD_IN);
 		else
 			perror("Wrong input in redirec: command < file");
 	}
@@ -139,7 +144,11 @@ void	parse_input(char *input, t_microshell *shell)
 		if (strstr(shell->args1[0],"cd"))
 			chdir(shell->args1[1]);
 		else if (strstr(shell->args1[0],"exit"))
-				exit(0);
+		{
+			clear_history();
+			write(1, "Exit...\n", 8);
+			exit(EXIT_SUCCESS);
+		}
 		else 
 			run_exec(shell->args1);
 	}

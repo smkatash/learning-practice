@@ -6,7 +6,7 @@
 /*   By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 20:19:44 by ktashbae          #+#    #+#             */
-/*   Updated: 2022/08/31 21:31:06 by ktashbae         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:11:45 by ktashbae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ void run_exec(char **argv)
 {
 	if(fork() == 0)
 	{
+		child_signal();
 		execvp(argv[0], argv);
 		perror("S_execution: invalid input");
 		exit(1);
 	}
 	else
+	{
+		parent_signal();
 		wait(NULL);
+	}
 }
 
 /*
@@ -84,7 +88,7 @@ void execute_pipe(char **buffer, int ptr)
 /*
 loads and executes a an external command that needs file redirection(input, output or append)
 */
-void execute_redirect(char **buffer, int ptr, int mode)
+void execute_redirect(char **buffer, int mode)
 {
 	int		ptr_update;
 	char	*argv[100];
@@ -105,6 +109,7 @@ void execute_redirect(char **buffer, int ptr, int mode)
 		if (fd < 0)
 		{
 			perror("Microshell: cannot open file\n");
+			free(argv);
 			return;
 		}
 		if (mode == STD_IN)
@@ -117,6 +122,7 @@ void execute_redirect(char **buffer, int ptr, int mode)
 			return ;
 		execvp(argv[0], argv);
 		perror("R_execution: invalid input");
+		free(argv);
 		exit(1);
 	}
 	wait(NULL);
@@ -135,7 +141,7 @@ void execute_back(char **buffer, int ptr)
 	while (i < ptr)
 	{
 		tokenizer(argv, &ptr_update, buffer[i], " ");
-		if(fork()==0)
+		if (fork() == 0)
 		{
 			execvp(argv[0], argv);
 			perror("B_execution: invalid input.");
@@ -150,3 +156,4 @@ void execute_back(char **buffer, int ptr)
 		i++;
 	}
 }
+
