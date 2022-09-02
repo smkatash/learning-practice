@@ -6,7 +6,7 @@
 /*   By: ktashbae <ktashbae@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 20:19:44 by ktashbae          #+#    #+#             */
-/*   Updated: 2022/09/02 17:59:15 by ktashbae         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:34:52 by ktashbae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ void execute_redirect(char **buffer, int mode)
 
 	skip_whitespace(buffer[1]);
 	tokenizer(argv, &ptr_update, buffer[0], " ");
-	if (fork()==0)
+	if (fork() == 0)
 	{
 		if (mode == STD_IN)
-			fd = open(buffer[1],O_RDONLY);
+			fd = open(buffer[1], O_RDONLY, 0664);
 		else if (mode == STD_OUT)
-			fd = open(buffer[1],O_WRONLY);
+			fd = open(buffer[1], O_WRONLY | O_CREAT, 0664);
 		else if (mode == APPEND)
-			fd = open(buffer[1],O_WRONLY | O_APPEND);
+			fd = open(buffer[1], O_WRONLY | O_APPEND, 0664);
 		else
 			return;
 		if (fd < 0)
