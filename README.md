@@ -5,6 +5,7 @@ In this repository, i re-implemented the simple version of a shell, the interact
 ft_strtok function is re-recreated that behaves similarly to the tokenizer of <cstring> header. And included basic handling of signals CTRL-C & CTRL\.
 
 The basic structure of the implementation is following:
+
 -------> readline (gets user input with history management)
 -------> parser (tokenizes input into sequences of commands and operators and calls according execution path)
 -------> executes commands according to operators.
