@@ -8,7 +8,7 @@ The basic structure of the implementation is following:
 
 -------> readline (gets user input with history management)
 -------> parser (tokenizes input into sequences of commands and operators and calls according execution path)
--------> executes commands according to operators.
+-------> execution (executes commands according to operators).
 
 
 ## Supported: cd, cat, pwd, echo, exit. Not all commands are supported. ##
